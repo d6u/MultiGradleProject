@@ -43,22 +43,21 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
-  @Nullable Messenger mMessenger;
-  @Nullable Messenger mReplyMessenger;
+  @Nullable Messenger mServiceMessengerClient;
+  @Nullable Messenger mActivityMessengerClient;
   @Nullable ActivityMainBinding mActivityMainBinding;
 
   private ServiceConnection mConnection =
       new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName className, IBinder binder) {
-          mMessenger = new Messenger(binder);
-          Message message =
-              Message.obtain(new ReplyHandler(mActivityMainBinding), SomeService.GET_MESSAGE);
-          message.replyTo = mReplyMessenger;
+          mServiceMessengerClient = new Messenger(binder);
+          Message message = Message.obtain(null, SomeService.GET_MESSAGE);
+          message.replyTo = mActivityMessengerClient;
 
           try {
-            Log.d(TAG, "Send Message");
-            mMessenger.send(message);
+            Log.d(TAG, "Send message");
+            mServiceMessengerClient.send(message);
           } catch (RemoteException e) {
             e.printStackTrace();
           }
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
-          mMessenger = null;
+          mServiceMessengerClient = null;
         }
       };
 
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     mActivityMainBinding =
         ActivityMainBinding.inflate(
             getLayoutInflater(), (ViewGroup) findViewById(android.R.id.content), true);
-    mReplyMessenger = new Messenger(new ReplyHandler(mActivityMainBinding));
+    mActivityMessengerClient = new Messenger(new ReplyHandler(mActivityMainBinding));
   }
 
   @Override
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onStop() {
     super.onStop();
-    if (mMessenger != null) {
+    if (mServiceMessengerClient != null) {
       unbindService(mConnection);
     }
   }

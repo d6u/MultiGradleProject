@@ -16,6 +16,7 @@
             android:name=".SomeService"
             android:enabled="true"
             android:exported="false"
+            android:process=":SomeService"
             />
 
         <activity android:name=".MainActivity">
