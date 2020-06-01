@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.daiwei.multigradleproject.databinding.ActivityMainBinding;
+import com.daiwei.otherservice.SomeService;
 
 public class MainActivity extends AppCompatActivity {
 

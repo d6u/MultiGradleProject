@@ -12,13 +12,6 @@
         android:theme="@style/AppTheme"
         >
 
-        <service
-            android:name=".SomeService"
-            android:enabled="true"
-            android:exported="false"
-            android:process=":SomeService"
-            />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

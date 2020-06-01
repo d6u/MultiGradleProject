@@ -1,4 +1,4 @@
-package com.daiwei.multigradleproject;
+package com.daiwei.otherservice;
 
 import android.app.Service;
 import android.content.Intent;
@@ -17,11 +17,11 @@ public class SomeService extends Service {
 
   private static final String TAG = SomeService.class.getSimpleName();
 
-  static final int GET_MESSAGE = 1;
-  static final int GET_MESSAGE_REPLY = 2;
-  static final String MESSENGE_KEY = "key";
+  public static final int GET_MESSAGE = 1;
+  public static final int GET_MESSAGE_REPLY = 2;
+  public static final String MESSENGE_KEY = "key";
 
-  static class IncomingHandler extends Handler {
+  private static class IncomingHandler extends Handler {
     @Override
     public void handleMessage(Message msg) {
       if (msg.what == GET_MESSAGE) {

@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.daiwei.otherservice"
+    >
+
+    <application>
+
+        <service
+            android:name="com.daiwei.otherservice.SomeService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":SomeService"
+            />
+
+    </application>
+
+</manifest>
