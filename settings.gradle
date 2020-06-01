@@ -1,3 +1,4 @@
 rootProject.name='MultiGradleProject'
 include ':app'
 include ':otherservice'
+include ':otherservice-aar'
